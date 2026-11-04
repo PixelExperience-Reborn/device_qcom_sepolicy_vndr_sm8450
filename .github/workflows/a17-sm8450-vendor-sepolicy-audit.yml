@@ -1,0 +1,33 @@
+name: P2 archived SM8450 Qualcomm vendor sepolicy safety inventory
+
+on:
+  push:
+    branches:
+      - audit/a17-native-sm8450-vendor-sepolicy-20261104
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  legacy-vendor-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            docs
+            tools
+            SEPolicy.mk
+            generic/vendor/common/dontaudit.te
+            generic/vendor/common/hal_keymint_qti.te
+            generic/vendor/common/hal_audio_default.te
+            generic/vendor/common/file_contexts
+            generic/vendor/anorak/file_contexts
+          sparse-checkout-cone-mode: false
+      - name: Audit old QSSI dependency, HAL KeyMint grants and suppressed AVC — no Make
+        run: python3 tools/verify_a17_sm8450_vendor_sepolicy_legacy.py
