@@ -29,7 +29,7 @@ Date: 2026-11-04. **Source-only security review. This old CAF/Lineage vendor pol
 - [x] Historical CAF/Lineage QSSI14 provenance, dependencies and shared vendor/product policy directories identified.
 - [x] Verified **no** `generic/vendor/sm8450` or `qva/vendor/sm8450` directory in archive.
 - [x] KeyMint, dontaudit, generic node labels and broad audio policy risk examples identified.
-- [x] Host-only archive check added; does not execute or import `SEPolicy.mk`.
+- [x] Host-only archived QSSI14 KeyMint/vendor SELinux inventory [CI PASS #41802000101](https://github.com/PixelExperience-Reborn/device_qcom_sepolicy_vndr_sm8450/actions/runs/41802000101); the old Make file was never executed, and no policy was imported.
 - [ ] AOSP17 native mondrian vendor policy created and compiled, with extracted real consumers.
 - [ ] SELinux `neverallow`, VINTF/CTS/VTS and enforcing boot on mondrian proven.
 
